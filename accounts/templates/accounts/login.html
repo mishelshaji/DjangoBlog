@@ -3,10 +3,15 @@
 {% block content %}
     <h1 class="text-center">Login</h1>
     <div class="container">
-        <form method="post">
-            {{ form }}
+        <form method="post" id="loginform">
+            {{ form.as_p }}
             <button class="btn btn-primary btn-block">Login</button>
         </form>
     </div>
+    <script>
+        document.querySelectorAll('#loginform input').forEach(e=>{
+            e.classList.add('form-control');
+        })
+    </script>
 {% endblock content %}
     

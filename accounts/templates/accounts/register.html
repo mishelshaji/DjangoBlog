@@ -1,0 +1,17 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+    <h1 class="text-center">Register</h1>
+    <div class="container">
+        <form method="post" id="registrationform">
+            {{ form.as_p }}
+            <button class="btn btn-primary btn-block">Register</button>
+        </form>
+    </div>
+    <script>
+        document.querySelectorAll('#registrationform input').forEach(e=>{
+            e.classList.add('form-control');
+        })
+    </script>
+{% endblock content %}
+    

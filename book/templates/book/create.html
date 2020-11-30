@@ -1,0 +1,14 @@
+{% extends 'book/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center">New Book</h1>
+        <form method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+
+            <button type="submit" class="btn btn-primary btn-block">Save</button>
+        </form>
+    </div>
+{% endblock content %}
+    

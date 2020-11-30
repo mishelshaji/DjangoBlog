@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container">
         <h1 class="text-center">New Book</h1>
-        <form method="post">
+        <form method="post" id="bookform">
             {{ form.as_p }}
             {% csrf_token %}
 

@@ -1,0 +1,36 @@
+{% extends 'book/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center">Book List</h1>
+        
+        {% if data %}
+
+        <table class="table border table-striped table-hover table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Price</th>
+                <th>Published On</th>
+            </tr>
+            
+            {% for b in data %}
+            <tr>
+                <td>{{ b.name }}</td>
+                <td>{{ b.author }}</td>
+                <td>{{ b.price }}</td>
+                <td>{{ b.published_on }}</td>
+            </tr>
+            {% endfor %}
+            
+        </table>
+        {% else %}
+
+        <div class="alert alert-danger">
+            <h3>No books found</h3>
+        </div>
+
+        {% endif %}
+    </div>
+{% endblock content %}
+    

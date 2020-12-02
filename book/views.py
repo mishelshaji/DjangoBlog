@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Book
 from .forms import BookCreationForm
 
@@ -8,5 +8,11 @@ def home(request):
     return render(request, 'book/home.html', {'data':books})
 
 def new_book(request):
-    bcf = BookCreationForm()
-    return render(request, 'book/create.html', {'form': bcf})
+    if request.method == "GET":
+        bcf = BookCreationForm()
+        return render(request, 'book/create.html', {'form': bcf})
+    
+    bcf = BookCreationForm(request.POST)
+    if bcf.is_valid():
+        bcf.save()
+        return redirect('book_home')

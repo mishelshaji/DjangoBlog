@@ -19,3 +19,4 @@ def new_book(request):
         messages.add_message(request, messages.SUCCESS, 'New Book Added')
         # messages.success(request, 'Data Saved')
         return redirect('book_home')
+    return render(request, 'book/create.html', {'form': bcf})

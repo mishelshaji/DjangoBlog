@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinLengthValidator
 
 # Create your models here.
 class Book(models.Model):
@@ -17,7 +18,10 @@ class Book(models.Model):
         unique=True,
         blank=False,
         null=False,
-        verbose_name='Book Name'
+        verbose_name='Book Name',
+        validators=[
+            MinLengthValidator(3)
+        ]
     )
 
     author = models.CharField(
@@ -34,7 +38,7 @@ class Book(models.Model):
 
     price = models.IntegerField(
         default=0,
-        verbose_name='Price'
+        verbose_name='Price',
     )
 
     category = models.CharField(

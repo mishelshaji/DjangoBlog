@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput, DateInput, NumberInput, Select
+from django.forms import ModelForm, TextInput, DateInput, NumberInput, Select, forms
 from .models import Book
 
 class BookCreationForm(ModelForm):
@@ -34,3 +34,12 @@ class BookCreationForm(ModelForm):
                 }
             ),
         }
+    
+    def clean_category(self):
+        category = self.cleaned_data.get('category')
+        price = self.cleaned_data.get('price')
+        
+        if category == 'sports' and price < 250:
+            raise forms.ValidationError("Invalid Price for sports")
+
+        return category

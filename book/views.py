@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from .models import Book
 from .forms import BookCreationForm
+from django.contrib import messages
 
 # Create your views here.
 def home(request):
@@ -15,4 +16,6 @@ def new_book(request):
     bcf = BookCreationForm(request.POST)
     if bcf.is_valid():
         bcf.save()
+        messages.add_message(request, messages.SUCCESS, 'New Book Added')
+        # messages.success(request, 'Data Saved')
         return redirect('book_home')

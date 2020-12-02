@@ -4,6 +4,17 @@
     <div class="container">
         <h1 class="text-center">Book List</h1>
         
+        
+        {% if messages %}
+            <div class="alert alert-info">
+                <ul> 
+                    {% for m in messages %}
+                        <li>{{ m }}</li>
+                    {% endfor %}      
+                </ul>
+            </div>
+        {% endif %}
+            
         {% if data %}
 
         <table class="table border table-striped table-hover table-dark">

@@ -23,6 +23,7 @@
                 <th>Author</th>
                 <th>Price</th>
                 <th>Published On</th>
+                <th>Action</th>
             </tr>
             
             {% for b in data %}
@@ -31,6 +32,9 @@
                 <td>{{ b.author }}</td>
                 <td>{{ b.price }}</td>
                 <td>{{ b.published_on }}</td>
+                <td>
+                    <a href="{% url 'book_update' id=b.id %}" class="text-primary">Edit</a>
+                </td>
             </tr>
             {% endfor %}
             

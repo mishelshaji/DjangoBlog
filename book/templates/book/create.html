@@ -1,14 +1,104 @@
 {% extends 'book/base.html' %}
 
 {% block content %}
-    <div class="container">
-        <h1 class="text-center">New Book</h1>
-        <form method="post" id="bookform">
-            {{ form.as_p }}
-            {% csrf_token %}
+<div class="container">
+    <h1 class="text-center">New Book</h1>
+    <form method="post" id="bookform">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    {{ form.name.label }}
+                    {{ form.name }}
+                </div>
+                {% if form.name.errors %}
+                <div class="text-danger">
+                    <ul>
+                        {% for e in form.name.errors %}
+                        <li>{{ e }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    {{ form.author.label }}
+                    {{ form.author }}
+                </div>
+                {% if form.author.errors %}
+                <div class="text-danger">
+                    <ul>
+                        {% for e in form.author.errors %}
+                        <li>{{ e }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    {{ form.description.label }}
+                    {{ form.description }}
+                </div>
+                {% if form.description.errors %}
+                <div class="text-danger">
+                    <ul>
+                        {% for e in form.description.errors %}
+                        <li>{{ e }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    {{ form.published_on.label }}
+                    {{ form.published_on }}
+                </div>
+                {% if form.published_on.errors %}
+                <div class="text-danger">
+                    <ul>
+                        {% for e in form.published_on.errors %}
+                        <li>{{ e }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    {{ form.price.label }}
+                    {{ form.price }}
+                </div>
+                {% if form.price.errors %}
+                <div class="text-danger">
+                    <ul>
+                        {% for e in form.price.errors %}
+                        <li>{{ e }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    {{ form.category.label }}
+                    {{ form.category }}
+                </div>
+                {% if form.category.errors %}
+                <div class="text-danger">
+                    <ul>
+                        {% for e in form.category.errors %}
+                        <li>{{ e }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% csrf_token %}
 
-            <button type="submit" class="btn btn-primary btn-block">Save</button>
-        </form>
-    </div>
+        <button type="submit" class="btn btn-primary btn-block">Save</button>
+    </form>
+</div>
 {% endblock content %}
-    

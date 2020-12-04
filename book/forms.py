@@ -1,4 +1,5 @@
 from django.forms import ModelForm, TextInput, DateInput, NumberInput, Select, forms
+from django.forms.widgets import Textarea
 from .models import Book
 
 class BookCreationForm(ModelForm):
@@ -15,6 +16,12 @@ class BookCreationForm(ModelForm):
             'author': TextInput(
                 attrs={
                     'class': 'form-control'
+                }
+            ),
+            'description': Textarea(
+                attrs={
+                    'class': 'form-control',
+                    'rows': '3'
                 }
             ),
             'published_on': DateInput(

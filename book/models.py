@@ -24,6 +24,14 @@ class Book(models.Model):
         ]
     )
 
+    description = models.TextField(
+        verbose_name='Description',
+        blank=True,
+        validators=[
+            MinLengthValidator(5)
+        ]
+    )
+
     author = models.CharField(
         max_length=150,
         blank=False,

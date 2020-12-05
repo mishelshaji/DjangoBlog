@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'user',
     'accounts',
     'book',
+    'administrator',
 ]
 
 MIDDLEWARE = [

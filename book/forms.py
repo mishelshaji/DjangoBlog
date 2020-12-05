@@ -1,8 +1,10 @@
+from django.db.models.fields import TextField
 from django.forms import ModelForm, TextInput, DateInput, NumberInput, Select, forms
 from django.forms.widgets import Textarea
 from .models import Book
 
 class BookCreationForm(ModelForm):
+
     class Meta:
         model = Book
         fields = '__all__'

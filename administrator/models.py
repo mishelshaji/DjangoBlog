@@ -3,6 +3,21 @@ from django.core import validators
 from django.contrib.auth.models import User
 
 # Create your models here.
+class Category(models.Model):
+    class Meta:
+        db_table = 'category'
+
+    name = models.CharField(
+        max_length=20,
+        verbose_name='Category Name',
+        unique=True
+    )
+
+    description = models.TextField(
+        verbose_name='Description',
+        validators=[validators.MinLengthValidator(10)]
+    )
+
 class Post(models.Model):
     class Meta:
         db_table = 'blog'

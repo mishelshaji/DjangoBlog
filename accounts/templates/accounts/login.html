@@ -5,6 +5,7 @@
     <div class="container">
         <form method="post" id="loginform">
             {{ form.as_p }}
+            {% csrf_token %}
             <button class="btn btn-primary btn-block">Login</button>
         </form>
     </div>

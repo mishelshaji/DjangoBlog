@@ -1,0 +1,22 @@
+{% extends 'administrator/shared/base.html' %}
+
+{% block content %}
+<h1 class="text-center">Blog Posts</h1>
+<div class="container">
+    
+    {% if data %}
+    <ul class="list-group">
+        
+        {% for p in data %}
+        <li class="list-group-item">{{ p.title }}</li>
+        {% endfor %}
+            
+    </ul>
+    {% else %}
+    <div class="alert alert-info">
+        <p class="text-center">No posts found</p>
+    </div>
+    {% endif %}
+        
+</div>
+{% endblock content %}

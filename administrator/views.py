@@ -1,10 +1,14 @@
+from administrator.models import Post
 from django.shortcuts import redirect, render, HttpResponse
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm
 
 # Create your views here.
+@login_required
 def post_list(request):
-    pass
+    q = Post.objects.filter(author=request.user)
+    return render(request, 'administrator/home.html', {'data': q})
 
 @login_required
 def post_create(request):
@@ -16,8 +20,11 @@ def post_create(request):
     elif request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
-            form.save()
-            return HttpResponse("Data saved")
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            messages.success(request, 'New post created')
+            return redirect('admin_home')
 
         context = {}
         context['form'] = form

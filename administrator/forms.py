@@ -18,7 +18,7 @@ class PostForm(forms.ModelForm):
                     'rows': '5'
                 }
             ),
-            'url': forms.URLInput(
+            'url': forms.TextInput(
                 attrs={
                     'class': 'form-control'
                 }

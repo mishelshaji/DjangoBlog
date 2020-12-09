@@ -1,3 +1,4 @@
+from django.http.response import HttpResponseBadRequest, HttpResponseNotFound
 from administrator.models import Post
 from django.shortcuts import redirect, render, HttpResponse
 from django.contrib import messages
@@ -29,3 +30,14 @@ def post_create(request):
         context = {}
         context['form'] = form
         return render(request, 'administrator/post_create.html', context)
+
+@login_required
+def post_delete(request, id):
+    try:
+        p = Post.objects.filter(id=id, author=request.user).get()
+        p.delete()
+    except Post.DoesNotExist:
+        return HttpResponseNotFound()
+
+    messages.success(request, 'Post deleted')
+    return redirect('admin_home')

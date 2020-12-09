@@ -1,6 +1,5 @@
-from django.http.response import HttpResponseBadRequest, HttpResponseNotFound
 from administrator.models import Post
-from django.shortcuts import redirect, render, HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render, HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm
@@ -33,11 +32,7 @@ def post_create(request):
 
 @login_required
 def post_delete(request, id):
-    try:
-        p = Post.objects.filter(id=id, author=request.user).get()
-        p.delete()
-    except Post.DoesNotExist:
-        return HttpResponseNotFound()
-
+    p = get_object_or_404(Post, id=id, author=request.user)
+    p.delete()
     messages.success(request, 'Post deleted')
     return redirect('admin_home')

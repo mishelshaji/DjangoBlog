@@ -1,13 +1,33 @@
 {% extends 'administrator/shared/base.html' %}
 
 {% block content %}
-    <div class="container">
-        <h1 class="text-center">Blog Post</h1>
-        <form method="post">
-            {{ form.as_p }}
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary btn-block">Save</button>
-        </form>
-    </div>
+<div class="container">
+    <h1 class="text-center">Blog Post</h1>
+    <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-block">Save</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('id_body').removeAttribute('required');
+    var source = document.getElementById('id_title');
+    var target = document.getElementById('id_url')
+    source.addEventListener('keyup', slugify);
+    function slugify() {
+        var res = source.value
+            .toString()
+            .trim()
+            .toLowerCase()
+            .replace(/\s+/g, "-")
+            .replace(/[^\w\-]+/g, "")
+            .replace(/\-\-+/g, "-")
+            .replace(/^-+/, "")
+            .replace(/-+$/, "");
+        
+            target.value = res;
+    }
+</script>
+{% include 'administrator/partials/simplemde_sdk.html' %}
 {% endblock content %}
-    

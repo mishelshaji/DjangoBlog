@@ -19,7 +19,7 @@ def user_login(request):
                 target = request.GET.get('next')
                 if target is not None:
                     return redirect(target)
-                return redirect('admin_post_list')
+                return redirect('admin_home')
 
 
 def register(request):

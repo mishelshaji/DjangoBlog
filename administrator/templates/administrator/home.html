@@ -11,7 +11,7 @@
         <li class="list-group-item">
             {{ p.title }}
             <div class="btn-group" style="float: right;">
-                <a href="#" class="btn btn-primary fa fa-eye p-3"></a>
+                <a href="{% url 'viewpost' url=p.url %}" target="_blank" class="btn btn-primary fa fa-eye p-3"></a>
                 <a href="{% url 'admin_post_edit' id=p.id %}" class="btn btn-success fa fa-edit p-3"></a>
                 <a href="{% url 'admin_post_delete' id=p.id %}" class="btn btn-danger fa fa-trash p-3" onclick="return confirm('Do you want to delete this post?')"></a>
             </div>

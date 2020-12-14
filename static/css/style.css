@@ -1,0 +1,12 @@
+#post_content{
+    text-align: justify;
+}
+
+#post_content img{
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px #b9b9b9;
+}
+
+#post_content a::after{
+    content: '\1F50E';
+}

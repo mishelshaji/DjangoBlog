@@ -1,3 +1,4 @@
+from django.forms.widgets import SelectDateWidget
 from administrator.models import Post
 from django.shortcuts import get_object_or_404, redirect, render, HttpResponse
 from django.contrib import messages
@@ -36,3 +37,18 @@ def post_delete(request, id):
     p.delete()
     messages.success(request, 'Post deleted')
     return redirect('admin_home')
+
+@login_required
+def post_edit(request, id):
+    p = get_object_or_404(Post, id=id, author=request.user)
+
+    if request.method == "GET":
+        form = PostForm(instance=p)
+        return render(request, 'administrator/post_create.html', {'form': form})
+    
+    form = PostForm(data=request.POST, instance=p)
+    if form.is_valid():
+        form.save()
+        messages.success(request, "Post Updated")
+        return redirect('admin_home')
+    return render(request, 'administrator/post_create.html', {'form': form})

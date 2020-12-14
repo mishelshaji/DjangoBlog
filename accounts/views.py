@@ -20,6 +20,7 @@ def user_login(request):
                 if target is not None:
                     return redirect(target)
                 return redirect('admin_home')
+            return render(request, 'accounts/login.html', {"form": form})
 
 
 def register(request):

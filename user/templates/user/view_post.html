@@ -11,7 +11,11 @@
     <article>
         <h1 class="text-center">{{ data.title }}</h1>
         <section class="mt-5">
+            
+            {% autoescape off %}
             {{ data.body }}
+            {% endautoescape %}
+            
         </section>
     </article>
 </div>

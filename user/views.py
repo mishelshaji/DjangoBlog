@@ -1,5 +1,6 @@
 from administrator.models import Post
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, get_object_or_404
+import markdown
 
 # Create your views here.
 def home(request):
@@ -9,5 +10,6 @@ def about(request):
     return render(request, 'user/about.html')
 
 def view_post(request, url):
-    p = Post.objects.get(url=url)
+    p = get_object_or_404(Post, url=url)
+    p.body = markdown.markdown(p.body)
     return render(request, 'user/view_post.html', {'data': p})

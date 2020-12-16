@@ -24,7 +24,7 @@
                             <img src="{% static 'icons/clock.png' %}" style="height: 16px;"> {{ p.created_on|timesince }} ago
                         </span>
                     </div>
-                    <h4>{{ p.title }}</h4>
+                    <a href="{% url 'viewpost' url=p.url %}"><h4>{{ p.title }}</h4></a>
                     <p class="card-text">{{ p.description|slice:150 }}...</p>
                 </div>
             </div>

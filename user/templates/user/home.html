@@ -14,7 +14,13 @@
         {% for p in posts %}
         <div class="col-sm-4">
             <div class="card">
+                
+                {% if p.featured_image %}
+                <img src="{{ p.featured_image.url }}"  class="img-fluid" alt="...">
+                {% else %}
                 <img src="https://dummyimage.com/250x250.png?text=Post" class="img-fluid" alt="...">
+                {% endif %}
+                    
                 <div class="card-body">
                     <div class="mt-2 mb-2 ">
                         <span>

@@ -19,7 +19,7 @@ def post_create(request):
         return render(request, 'administrator/post_create.html', context)
     
     elif request.method == "POST":
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, files=request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
@@ -46,7 +46,7 @@ def post_edit(request, id):
         form = PostForm(instance=p)
         return render(request, 'administrator/post_create.html', {'form': form})
     
-    form = PostForm(data=request.POST, instance=p)
+    form = PostForm(data=request.POST, instance=p, files=request.FILES)
     if form.is_valid():
         form.save()
         messages.success(request, "Post Updated")

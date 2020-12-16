@@ -35,6 +35,12 @@ class Post(models.Model):
         ]
     )
 
+    featured_image = models.ImageField(
+        verbose_name='Featured Image',
+        upload_to = 'images/',
+        blank = True
+    )
+
     description = models.TextField(
         verbose_name='Description',
         validators=[validators.MinLengthValidator(10)]

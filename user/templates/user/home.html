@@ -2,11 +2,27 @@
 
 
 {% block meta %}
-    <title>Home</title>
+<title>Home</title>
 {% endblock meta %}
-    
+
 
 {% block content %}
 <h1 class="text-center">Welcome to my app</h1>
+<div class="container">
+    <div class="row">
+        
+        {% for p in posts %}
+        <div class="col-sm-4">
+            <div class="card">
+                <img src="https://dummyimage.com/250x250.png?text=Post" class="img-fluid" alt="...">
+                <div class="card-body">
+                    <h4>{{ p.title }}</h4>
+                    <p class="card-text">{{ p.description|slice:150 }}...</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+            
+    </div>
+</div>
 {% endblock content %}
-    

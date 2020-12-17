@@ -25,3 +25,7 @@ def user_login(request):
 
 def register(request):
     return render(request, 'accounts/register.html', {"form": UserCreationForm()})
+
+def user_logout(request):
+    logout(request)
+    return redirect('homepage')

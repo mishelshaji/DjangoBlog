@@ -5,7 +5,7 @@ import markdown
 # Create your views here.
 def home(request):
     context = {}
-    context['posts'] = Post.objects.all().order_by('-created_on')[:30]
+    context['posts'] = Post.objects.all().select_related('author').order_by('-created_on')[:30]
     return render(request, 'user/home.html', context)
 
 def about(request):

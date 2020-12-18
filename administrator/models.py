@@ -69,3 +69,9 @@ class Post(models.Model):
     updated_on = models.DateTimeField(
         auto_now=True
     )
+
+    category = models.ForeignKey(
+        to=Category,
+        default=1,
+        on_delete=models.CASCADE
+    )

@@ -19,6 +19,9 @@ class Category(models.Model):
         validators=[validators.MinLengthValidator(10)]
     )
 
+    def __str__(self):
+        return self.name
+
 class Post(models.Model):
     class Meta:
         db_table = 'blog'

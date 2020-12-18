@@ -23,6 +23,11 @@ class PostForm(forms.ModelForm):
                     'class': 'form-control'
                 }
             ),
+            'category': forms.Select(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
             'body': forms.Textarea(
                 attrs={
                     'class': 'form-control'

@@ -38,3 +38,6 @@ def update_book(request, id):
         return redirect('book_home')
     
     return render(request, 'book/create.html', {'form': form})
+
+def test(request):
+    pass

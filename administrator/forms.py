@@ -34,3 +34,27 @@ class PostForm(forms.ModelForm):
                 }
             ),
         }
+
+class CategoryForm(forms.Form):
+    name = forms.CharField(
+        label='Category Name',
+        min_length=3,
+        max_length=10,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control'
+            }
+        )
+    )
+
+    description = forms.CharField(
+        label='Description',
+        min_length=10,
+        max_length=500,
+        widget=forms.Textarea(
+            attrs={
+                'class': 'form-control',
+                'rows': '3'
+            }
+        )
+    )

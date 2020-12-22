@@ -1,0 +1,12 @@
+{% extends 'administrator/shared/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Category</h1>
+    <form method="post" enctype="multipart/form-data">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-block">Save</button>
+    </form>
+</div>
+{% endblock content %}

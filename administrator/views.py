@@ -3,7 +3,7 @@ from administrator.models import Post
 from django.shortcuts import get_object_or_404, redirect, render, HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import PostForm
+from .forms import PostForm, CategoryForm
 
 # Create your views here.
 @login_required
@@ -52,3 +52,10 @@ def post_edit(request, id):
         messages.success(request, "Post Updated")
         return redirect('admin_home')
     return render(request, 'administrator/post_create.html', {'form': form})
+
+def create_category(request):
+    if request.method == "GET":
+        cf = CategoryForm()
+        context = {}
+        context['form'] = cf
+        return render(request, 'administrator/category_create.html', context)

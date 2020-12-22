@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from django.forms import widgets
 from .models import *
 
@@ -58,3 +59,9 @@ class CategoryForm(forms.Form):
             }
         )
     )
+
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        if Category.objects.filter(name=name).exists():
+            raise ValidationError("This category already exists")
+        return name

@@ -60,8 +60,8 @@ class CategoryForm(forms.Form):
         )
     )
 
-    def clean_name(self):
-        name = self.cleaned_data['name']
-        if Category.objects.filter(name=name).exists():
-            raise ValidationError("This category already exists")
-        return name
+    # def clean_name(self):
+    #     name = self.cleaned_data['name']
+    #     if Category.objects.filter(name=name).exists():
+    #         raise ValidationError("This category already exists")
+    #     return name

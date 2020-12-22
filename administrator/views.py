@@ -64,7 +64,14 @@ def create_category(request):
         if cf.is_valid():
             name = cf.cleaned_data['name']
             description = cf.cleaned_data['description']
-            Category.objects.create(name=name, description=description)
+            obj, has_created = Category.objects.get_or_create(
+                name=name,
+                defaults={
+                    'description': description
+                }
+            )
+            print(obj)
+            print(has_created)
             return redirect('admin_category_list')
         return render(request, 'administrator/category_create.html', {'form': cf})
         

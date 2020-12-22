@@ -1,5 +1,5 @@
 from django.forms.widgets import SelectDateWidget
-from administrator.models import Post
+from administrator.models import Category, Post
 from django.shortcuts import get_object_or_404, redirect, render, HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -59,3 +59,16 @@ def create_category(request):
         context = {}
         context['form'] = cf
         return render(request, 'administrator/category_create.html', context)
+    elif request.method == "POST":
+        cf = CategoryForm(request.POST)
+        if cf.is_valid():
+            name = cf.cleaned_data['name']
+            description = cf.cleaned_data['description']
+            Category.objects.create(name=name, description=description)
+            return redirect('admin_category_list')
+        return render(request, 'administrator/category_create.html', {'form': cf})
+        
+
+
+def category_list(request):
+    return render(request, 'administrator/category_index.html', {'data': Category.objects.all()})

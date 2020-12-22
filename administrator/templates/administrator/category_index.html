@@ -1,0 +1,12 @@
+{% extends 'administrator/shared/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Category</h1>
+    <ul>  
+        {% for d in data %}
+            <li>{{ d.name }}</li>
+        {% endfor %}    
+    </ul>
+</div>
+{% endblock content %}

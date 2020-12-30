@@ -4,12 +4,23 @@ from django.shortcuts import get_object_or_404, redirect, render, HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm, CategoryForm
+from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
-@login_required
-def post_list(request):
-    q = Post.objects.filter(author=request.user)
-    return render(request, 'administrator/home.html', {'data': q})
+# @login_required
+# def post_list(request):
+#     q = Post.objects.filter(author=request.user)
+#     return render(request, 'administrator/home.html', {'data': q})
+
+class PostListView(LoginRequiredMixin, ListView):
+    model = Post
+    template_name = "administrator/home.html"
+    # queryset = Post.objects.all()
+    context_object_name = 'data'
+
+    def get_queryset(self):
+        return Post.objects.filter(author=self.request.user)
 
 @login_required
 def post_create(request):
@@ -53,6 +64,7 @@ def post_edit(request, id):
         return redirect('admin_home')
     return render(request, 'administrator/post_create.html', {'form': form})
 
+@login_required
 def create_category(request):
     if request.method == "GET":
         cf = CategoryForm()
@@ -75,6 +87,6 @@ def create_category(request):
         return render(request, 'administrator/category_create.html', {'form': cf})
         
 
-
+@login_required
 def category_list(request):
     return render(request, 'administrator/category_index.html', {'data': Category.objects.all()})

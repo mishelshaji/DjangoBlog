@@ -23,9 +23,17 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
+class PostManager(models.Manager):
+    def get_by_author(self):
+        return super().get_queryset().filter(author_id=2)
+
 class Post(models.Model):
     class Meta:
         db_table = 'blog'
+
+    custom = PostManager()
+    objects = models.Manager()
 
     id = models.BigAutoField(
         primary_key=True
